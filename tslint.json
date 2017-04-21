@@ -1,0 +1,64 @@
+{
+  "jsRules": {
+    "class-name": true,
+    "comment-format": [true, "check-space"],
+    "indent": [true, "spaces"],
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-trailing-whitespace": true,
+    "no-unsafe-finally": true,
+    "one-line": [true, "check-open-brace", "check-whitespace"],
+    "quotemark": [true, "double"],
+    "semicolon": [true, "always"],
+    "triple-equals": true,
+    "variable-name": [true, "ban-keywords"],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ]
+  },
+  "rules": {
+    "class-name": true,
+    "curly": true,
+    "only-arrow-functions": true,
+    "arrow-parens": true,
+    "comment-format": [true, "check-space"],
+    "indent": [true, "spaces"],
+    "no-var-keyword": true,
+    "no-use-before-declare": true,
+    "no-eval": true,
+    "no-internal-module": true,
+    "no-trailing-whitespace": true,
+    "no-unsafe-finally": true,
+    "one-line": [true, "check-open-brace", "check-whitespace"],
+    "no-consecutive-blank-lines": [true, 1],
+    "quotemark": [true, "single"],
+    "semicolon": [true, "always"],
+    "triple-equals": true,
+    "variable-name": [true, "ban-keywords"],
+    "import-spacing": true,
+    "ordered-imports": false,
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ]
+  }
+}
