@@ -4,7 +4,7 @@
   "description": "Free to use api for testing applications.",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node src/app/main.app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tslint": "tslint"
   },

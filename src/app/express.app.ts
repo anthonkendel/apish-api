@@ -1,7 +1,7 @@
 import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
-import {toJsonMessage} from './helpers/json.helper';
-import mainRoute from './routes/main.route';
+import {toJsonMessage} from '../helpers/json.helper';
+import mainRoute from '../routes/main.route';
 
 export class ExpressApp {
   expressApp: express.Application;

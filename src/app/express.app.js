@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var json_helper_1 = require("./helpers/json.helper");
-var main_route_1 = require("./routes/main.route");
+var json_helper_1 = require("../helpers/json.helper");
+var main_route_1 = require("../routes/main.route");
 var ExpressApp = (function () {
     function ExpressApp() {
         this.expressApp = express();
