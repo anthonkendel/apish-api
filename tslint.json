@@ -24,7 +24,7 @@
   "rules": {
     "class-name": true,
     "curly": true,
-    "only-arrow-functions": true,
+    "only-arrow-functions": [true, "allow-declarations"],
     "arrow-parens": true,
     "comment-format": [true, "check-space"],
     "indent": [true, "spaces"],
