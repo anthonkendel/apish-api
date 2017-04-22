@@ -6,10 +6,10 @@ var main_route_1 = require("../routes/main.route");
 var ExpressApp = (function () {
     function ExpressApp() {
         this.expressApp = express();
-    }
-    ExpressApp.prototype.start = function (host, port) {
         this.init();
         this.routes();
+    }
+    ExpressApp.prototype.start = function (host, port) {
         this.expressApp.listen(port, host, function () {
             console.log('App listening on ' + host + ':' + port);
         });
@@ -26,13 +26,14 @@ var ExpressApp = (function () {
         });
     };
     ExpressApp.prototype.routes = function () {
-        var basePath = '/api/v1';
-        this.expressApp.use(basePath, main_route_1.default.router);
+        var basePath = '/api';
+        var versionPath = '/v1';
+        this.expressApp.use(basePath + versionPath, main_route_1.default.router);
         // Return a message on resources not found
-        this.expressApp.get(basePath, function (req, res, next) {
+        this.expressApp.get(basePath + versionPath, function (req, res, next) {
             res.send(new message_model_1.Message('Could not find the requested resource').toJson());
         });
-        this.expressApp.post(basePath, function (req, res, next) {
+        this.expressApp.post(basePath + versionPath, function (req, res, next) {
             res.send(new message_model_1.Message('Could not find the requested resource').toJson());
         });
     };

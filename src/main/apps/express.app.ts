@@ -9,12 +9,13 @@ export class ExpressApp {
 
   constructor() {
     this.expressApp = express();
-  }
 
-  start(host: string, port: number) {
     this.init();
     this.routes();
 
+  }
+
+  start(host: string, port: number) {
     this.expressApp.listen(port, host, () => {
       console.log('App listening on ' + host + ':' + port);
     });
@@ -34,15 +35,17 @@ export class ExpressApp {
   }
 
   routes() {
-    let basePath = '/api/v1';
-    this.expressApp.use(basePath, mainRoute.router);
+    let basePath = '/api';
+    let versionPath = '/v1';
+
+    this.expressApp.use(basePath + versionPath, mainRoute.router);
 
     // Return a message on resources not found
-    this.expressApp.get(basePath, (req: Request, res: Response, next: NextFunction) => {
+    this.expressApp.get(basePath + versionPath, (req: Request, res: Response, next: NextFunction) => {
       res.send(new Message('Could not find the requested resource').toJson());
     });
 
-    this.expressApp.post(basePath, (req: Request, res: Response, next: NextFunction) => {
+    this.expressApp.post(basePath + versionPath, (req: Request, res: Response, next: NextFunction) => {
       res.send(new Message('Could not find the requested resource').toJson());
     });
   }

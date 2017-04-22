@@ -12,9 +12,9 @@ describe('requests on basepath - /api/v1', () => {
   /**
    * GET
    */
-  it('should return proper header on GET', () => {
+  it('should return proper header on GET - /', () => {
     return chai.request(api)
-      .get('/api/v1')
+      .get('/api/v1/')
       .then((res) => {
         res.should.have.header('Content-Type', 'application/json; charset=utf-8');
         res.should.have.header('Access-Control-Allow-Origin', '*');
@@ -23,9 +23,9 @@ describe('requests on basepath - /api/v1', () => {
       });
   });
 
-  it('should return status code 200 on GET', () => {
+  it('should return status code ::200:: on GET - /', () => {
     return chai.request(api)
-      .get('/api/v1')
+      .get('/api/v1/')
       .then((res) => {
         res.should.have.status(200);
       });
@@ -34,9 +34,9 @@ describe('requests on basepath - /api/v1', () => {
   /**
    * POST
    */
-  it('should return proper header on POST', () => {
+  it('should return proper header on POST - /', () => {
     return chai.request(api)
-      .post('/api/v1')
+      .post('/api/v1/')
       .then((res) => {
         res.should.have.header('Content-Type', 'application/json; charset=utf-8');
         res.should.have.header('Access-Control-Allow-Origin', '*');
@@ -45,9 +45,9 @@ describe('requests on basepath - /api/v1', () => {
       });
   });
 
-  it('should return status code 200 on POST', () => {
+  it('should return status code ::200:: on POST - /', () => {
     return chai.request(api)
-      .post('/api/v1')
+      .post('/api/v1/')
       .then((res) => {
         res.should.have.status(200);
       });
@@ -56,25 +56,24 @@ describe('requests on basepath - /api/v1', () => {
   /**
    * PUT
    */
-  it('should return status code 404 on PUT', () => {
+  it('should return status code ::404:: on PUT - /', () => {
     return chai.request(api)
-      .put('/api/v1')
+      .put('/api/v1/')
       .then((res) => {
-      }).catch((err) => {
-        err.should.have.status(404);
+      }, (res) => {
+        res.should.have.status(404);
       });
   });
 
   /**
    * DELETE
    */
-  it('should return status code 404 on DELETE', () => {
+  it('should return status code ::404:: on DELETE - /', () => {
     return chai.request(api)
-      .del('/api/v1')
+      .del('/api/v1/')
       .then((res) => {
-      }).catch((err) => {
-        err.should.have.status(404);
+      }, (res) => {
+        res.should.have.status(404);
       });
   });
-
 });

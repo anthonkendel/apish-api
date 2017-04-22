@@ -10,9 +10,9 @@ describe('requests on basepath - /api/v1', function () {
     /**
      * GET
      */
-    it('should return proper header on GET', function () {
+    it('should return proper header on GET - /', function () {
         return chai.request(api)
-            .get('/api/v1')
+            .get('/api/v1/')
             .then(function (res) {
             res.should.have.header('Content-Type', 'application/json; charset=utf-8');
             res.should.have.header('Access-Control-Allow-Origin', '*');
@@ -20,9 +20,9 @@ describe('requests on basepath - /api/v1', function () {
             res.should.have.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         });
     });
-    it('should return status code 200 on GET', function () {
+    it('should return status code ::200:: on GET - /', function () {
         return chai.request(api)
-            .get('/api/v1')
+            .get('/api/v1/')
             .then(function (res) {
             res.should.have.status(200);
         });
@@ -30,9 +30,9 @@ describe('requests on basepath - /api/v1', function () {
     /**
      * POST
      */
-    it('should return proper header on POST', function () {
+    it('should return proper header on POST - /', function () {
         return chai.request(api)
-            .post('/api/v1')
+            .post('/api/v1/')
             .then(function (res) {
             res.should.have.header('Content-Type', 'application/json; charset=utf-8');
             res.should.have.header('Access-Control-Allow-Origin', '*');
@@ -40,9 +40,9 @@ describe('requests on basepath - /api/v1', function () {
             res.should.have.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         });
     });
-    it('should return status code 200 on POST', function () {
+    it('should return status code ::200:: on POST - /', function () {
         return chai.request(api)
-            .post('/api/v1')
+            .post('/api/v1/')
             .then(function (res) {
             res.should.have.status(200);
         });
@@ -50,23 +50,23 @@ describe('requests on basepath - /api/v1', function () {
     /**
      * PUT
      */
-    it('should return status code 404 on PUT', function () {
+    it('should return status code ::404:: on PUT - /', function () {
         return chai.request(api)
-            .put('/api/v1')
+            .put('/api/v1/')
             .then(function (res) {
-        }).catch(function (err) {
-            err.should.have.status(404);
+        }, function (res) {
+            res.should.have.status(404);
         });
     });
     /**
      * DELETE
      */
-    it('should return status code 404 on DELETE', function () {
+    it('should return status code ::404:: on DELETE - /', function () {
         return chai.request(api)
-            .del('/api/v1')
+            .del('/api/v1/')
             .then(function (res) {
-        }).catch(function (err) {
-            err.should.have.status(404);
+        }, function (res) {
+            res.should.have.status(404);
         });
     });
 });

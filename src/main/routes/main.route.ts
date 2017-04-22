@@ -1,16 +1,19 @@
 import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
+import date from './date.route';
 
-class Main {
+class MainRouter {
   router: express.Router;
 
   constructor() {
     this.router = express.Router();
-    this.init();
+    this.routes();
   }
 
-  private init() {}
+  private routes() {
+    this.router.use('/dates', date.router);
+  }
 }
 
-let main = new Main();
+let main = new MainRouter();
 export default main;
