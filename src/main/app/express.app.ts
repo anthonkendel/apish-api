@@ -34,10 +34,15 @@ export class ExpressApp {
   }
 
   routes() {
-    this.expressApp.use('/api/v1', mainRoute.router);
+    let basePath = '/api/v1';
+    this.expressApp.use(basePath, mainRoute.router);
 
     // Return a message on resources not found
-    this.expressApp.use((req: Request, res: Response, next: NextFunction) => {
+    this.expressApp.get(basePath, (req: Request, res: Response, next: NextFunction) => {
+      res.send(toJsonMessage('Could not find the requested resource'));
+    });
+
+    this.expressApp.post(basePath, (req: Request, res: Response, next: NextFunction) => {
       res.send(toJsonMessage('Could not find the requested resource'));
     });
   }

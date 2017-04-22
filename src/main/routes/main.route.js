@@ -6,8 +6,7 @@ var Main = (function () {
         this.router = express.Router();
         this.init();
     }
-    Main.prototype.init = function () {
-    };
+    Main.prototype.init = function () { };
     return Main;
 }());
 var main = new Main();

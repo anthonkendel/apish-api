@@ -4,8 +4,8 @@
   "description": "Free to use api for testing applications.",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app/main.app.js",
-    "test": "mocha -c src/**/*.js",
+    "start": "node src/main/app/main.app.js",
+    "test": "mocha -c src/test/**/*.js",
     "tslint": "tslint"
   },
   "repository": {

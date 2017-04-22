@@ -9,8 +9,7 @@ class Main {
     this.init();
   }
 
-  private init() {
-  }
+  private init() {}
 }
 
 let main = new Main();

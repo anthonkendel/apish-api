@@ -26,9 +26,13 @@ var ExpressApp = (function () {
         });
     };
     ExpressApp.prototype.routes = function () {
-        this.expressApp.use('/api/v1', main_route_1.default.router);
+        var basePath = '/api/v1';
+        this.expressApp.use(basePath, main_route_1.default.router);
         // Return a message on resources not found
-        this.expressApp.use(function (req, res, next) {
+        this.expressApp.get(basePath, function (req, res, next) {
+            res.send(json_helper_1.toJsonMessage('Could not find the requested resource'));
+        });
+        this.expressApp.post(basePath, function (req, res, next) {
             res.send(json_helper_1.toJsonMessage('Could not find the requested resource'));
         });
     };
