@@ -9,15 +9,15 @@ export class ExpressApp {
 
   constructor() {
     this.expressApp = express();
+    this.expressApp.set('port', (process.env.PORT || 3000));
 
     this.init();
     this.routes();
-
   }
 
-  start(host: string, port: number) {
-    this.expressApp.listen(port, host, () => {
-      console.log('App listening on ' + host + ':' + port);
+  start() {
+    this.expressApp.listen(this.expressApp.get('port'), () => {
+      console.log('App listening on port:' + this.expressApp.get('port'));
     });
   }
 

@@ -6,12 +6,14 @@ var main_route_1 = require("../routes/main.route");
 var ExpressApp = (function () {
     function ExpressApp() {
         this.expressApp = express();
+        this.expressApp.set('port', (process.env.PORT || 3000));
         this.init();
         this.routes();
     }
-    ExpressApp.prototype.start = function (host, port) {
-        this.expressApp.listen(port, host, function () {
-            console.log('App listening on ' + host + ':' + port);
+    ExpressApp.prototype.start = function () {
+        var _this = this;
+        this.expressApp.listen(this.expressApp.get('port'), function () {
+            console.log('App listening on port:' + _this.expressApp.get('port'));
         });
     };
     ExpressApp.prototype.init = function () {
