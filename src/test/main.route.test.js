@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var main_app_1 = require("../main/app/main.app");
+var main_app_1 = require("../main/apps/main.app");
 var chai = require("chai");
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);

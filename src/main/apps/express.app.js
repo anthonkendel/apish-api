@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var json_helper_1 = require("../helpers/json.helper");
+var message_model_1 = require("../models/message.model");
 var main_route_1 = require("../routes/main.route");
 var ExpressApp = (function () {
     function ExpressApp() {
@@ -30,10 +30,10 @@ var ExpressApp = (function () {
         this.expressApp.use(basePath, main_route_1.default.router);
         // Return a message on resources not found
         this.expressApp.get(basePath, function (req, res, next) {
-            res.send(json_helper_1.toJsonMessage('Could not find the requested resource'));
+            res.send(new message_model_1.Message('Could not find the requested resource').toJson());
         });
         this.expressApp.post(basePath, function (req, res, next) {
-            res.send(json_helper_1.toJsonMessage('Could not find the requested resource'));
+            res.send(new message_model_1.Message('Could not find the requested resource').toJson());
         });
     };
     return ExpressApp;

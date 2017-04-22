@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
-import {toJsonMessage} from '../helpers/json.helper';
+import {Message} from '../models/message.model';
 import mainRoute from '../routes/main.route';
 
 export class ExpressApp {
@@ -39,11 +39,11 @@ export class ExpressApp {
 
     // Return a message on resources not found
     this.expressApp.get(basePath, (req: Request, res: Response, next: NextFunction) => {
-      res.send(toJsonMessage('Could not find the requested resource'));
+      res.send(new Message('Could not find the requested resource').toJson());
     });
 
     this.expressApp.post(basePath, (req: Request, res: Response, next: NextFunction) => {
-      res.send(toJsonMessage('Could not find the requested resource'));
+      res.send(new Message('Could not find the requested resource').toJson());
     });
   }
 }

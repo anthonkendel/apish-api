@@ -1,4 +1,4 @@
-import app from '../main/app/main.app';
+import app from '../main/apps/main.app';
 import * as chai from 'chai';
 
 let chaiHttp = require('chai-http');
