@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var faker = require("faker");
 var Date = (function () {
+    /**
+     * Public
+     */
     function Date(type) {
         if (type === void 0) { type = ''; }
         switch (type) {

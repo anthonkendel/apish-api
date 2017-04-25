@@ -1,9 +1,15 @@
 import * as faker from 'faker';
 
 export class Date {
-  date: any;
+  /**
+   * Variables
+   */
+  private date: any;
 
-  constructor(type = '') {
+  /**
+   * Public
+   */
+  public constructor(type = '') {
     switch (type) {
       case 'past':
         this.date = faker.date.past();
@@ -20,7 +26,7 @@ export class Date {
     }
   }
 
-  toJson(format = '') {
+  public toJson(format = '') {
     switch (format) {
       default:
         break;

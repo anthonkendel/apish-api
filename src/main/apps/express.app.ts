@@ -1,27 +1,19 @@
 import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
 import {Message} from '../models/message.model';
-import mainRoute from '../routes/main.route';
+import {MainRouter} from '../routes/main.route';
 
 export class ExpressApp {
-  expressApp: express.Application;
-  pathPrefix: express.Router;
+  /**
+   * Variables
+   */
+  private expressApp: express.Application;
+  private pathPrefix: express.Router;
 
-  constructor() {
-    this.expressApp = express();
-    this.expressApp.set('port', (process.env.PORT || 3000));
-
-    this.init();
-    this.routes();
-  }
-
-  start() {
-    this.expressApp.listen(this.expressApp.get('port'), () => {
-      console.log('App listening on port:' + this.expressApp.get('port'));
-    });
-  }
-
-  init() {
+  /**
+   * Private
+   */
+  private init() {
     this.expressApp.use('*', (req: Request, res: Response, next: NextFunction) => {
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,19 +26,36 @@ export class ExpressApp {
     });
   }
 
-  routes() {
+  private routes() {
     let basePath = '/api';
     let versionPath = '/v1';
 
-    this.expressApp.use(basePath + versionPath, mainRoute.router);
+    this.expressApp.use(basePath + versionPath, MainRouter.getInstance().router);
 
     // Return a message on resources not found
     this.expressApp.get(basePath + versionPath, (req: Request, res: Response, next: NextFunction) => {
       res.send(new Message('Could not find the requested resource').toJson());
     });
-
+    // Return a message on resources not found
     this.expressApp.post(basePath + versionPath, (req: Request, res: Response, next: NextFunction) => {
       res.send(new Message('Could not find the requested resource').toJson());
+    });
+  }
+
+  /**
+   * Public
+   */
+  public constructor() {
+    this.expressApp = express();
+    this.expressApp.set('port', (process.env.PORT || 3000));
+
+    this.init();
+    this.routes();
+  }
+
+  public start() {
+    this.expressApp.listen(this.expressApp.get('port'), () => {
+      console.log('App listening on port:' + this.expressApp.get('port'));
     });
   }
 }

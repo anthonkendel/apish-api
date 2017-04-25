@@ -2,10 +2,20 @@ import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
 import {Date} from '../models/date.model';
 
-class DateRouter {
-  router: express.Router;
+export class DateRouter {
+  /**
+   * Variables
+   */
+  private static _instance: DateRouter = new DateRouter();
+  public router: express.Router;
 
-  constructor() {
+  /**
+   * Private
+   */
+  private constructor() {
+    if (DateRouter._instance) {
+      throw new Error('The Logger is a singleton class and cannot be created!');
+    }
     this.router = express.Router();
     this.routes();
   }
@@ -17,7 +27,11 @@ class DateRouter {
       res.status(200).send(new Date(type).toJson());
     });
   }
-}
 
-let date = new DateRouter();
-export default date;
+  /**
+   * Public
+   */
+  public static getInstance() {
+    return DateRouter._instance;
+  }
+}

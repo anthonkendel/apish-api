@@ -1,19 +1,32 @@
 import * as express from 'express';
-import {NextFunction, Request, Response} from 'express';
-import date from './date.route';
+import {DateRouter} from './date.route';
 
-class MainRouter {
-  router: express.Router;
+export class MainRouter {
+  /**
+   * Variables
+   */
+  private static _instance: MainRouter = new MainRouter();
+  public router: express.Router;
 
-  constructor() {
+  /**
+   * Private
+   */
+  private constructor() {
+    if (MainRouter._instance) {
+      throw new Error('The Logger is a singleton class and cannot be created!');
+    }
     this.router = express.Router();
     this.routes();
   }
 
   private routes() {
-    this.router.use('/dates', date.router);
+    this.router.use('/dates', DateRouter.getInstance().router);
+  }
+
+  /**
+   * Public
+   */
+  public static getInstance() {
+    return MainRouter._instance;
   }
 }
-
-let main = new MainRouter();
-export default main;

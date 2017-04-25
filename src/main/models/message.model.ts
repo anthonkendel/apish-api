@@ -1,11 +1,17 @@
 export class Message {
-  message: String;
+  /**
+   * Variables
+   */
+  private message: String;
 
-  constructor(message: String) {
+  /**
+   * Public
+   */
+  public constructor(message: String) {
     this.message = message;
   }
 
-  toJson(): String {
+  public toJson(): String {
     return JSON.stringify({
       message: this.message
     });
