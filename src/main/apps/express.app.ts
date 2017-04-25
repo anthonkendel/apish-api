@@ -7,8 +7,7 @@ export class ExpressApp {
   /**
    * Variables
    */
-  private expressApp: express.Application;
-  private pathPrefix: express.Router;
+  public expressApp: express.Application;
 
   /**
    * Private
