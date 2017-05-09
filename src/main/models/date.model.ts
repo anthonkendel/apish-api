@@ -1,4 +1,5 @@
 import * as faker from 'faker';
+import * as dateFormat from 'dateformat';
 
 export class Date {
   /**
@@ -7,33 +8,44 @@ export class Date {
   private date: any;
 
   /**
+   * Private
+   */
+  private generateDate(type = ''): any {
+    let date: any = '';
+
+    switch (type) {
+      case 'past':
+        date = faker.date.past();
+        break;
+      case 'future':
+        date = faker.date.future();
+        break;
+      case 'recent':
+        date = faker.date.recent();
+        break;
+      default:
+        date = faker.date.recent(1);
+        break;
+    }
+
+    return date;
+  }
+
+  private formatDate(format = ''): any {
+    return format ? dateFormat(this.date, format) : dateFormat(this.date, 'isoUtcDateTime');
+  }
+
+  /**
    * Public
    */
   public constructor(type = '') {
-    switch (type) {
-      case 'past':
-        this.date = faker.date.past();
-        break;
-      case 'future':
-        this.date = faker.date.future();
-        break;
-      case 'recent':
-        this.date = faker.date.recent();
-        break;
-      default:
-        this.date = faker.date.recent(1);
-        break;
-    }
+    this.date = this.generateDate(type);
   }
 
   public toJson(format = '') {
-    switch (format) {
-      default:
-        break;
-    }
-
+    let formattedDate = this.formatDate(format);
     return JSON.stringify({
-      date: this.date
+      date: formattedDate
     });
   }
 }

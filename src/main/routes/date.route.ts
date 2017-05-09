@@ -23,8 +23,9 @@ export class DateRouter {
   private routes() {
     this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
       let type = req.query.type;
+      let format = req.query.format;
 
-      res.status(200).send(new Date(type).toJson());
+      res.status(200).send(new Date(type).toJson(format));
     });
   }
 

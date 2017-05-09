@@ -6,15 +6,19 @@
 
 --------------------------------------------------------------------------------
 
-OpenData-API uses the following libraries for generating data:
+OpenData-API uses the following libraries for generating data and formatting:
 
 - [Faker.js](https://github.com/marak/Faker.js/)
+- [dateformat](https://www.npmjs.com/package/dateformat)
 
 ### Endpoints
-
-**Basepath:** `/api/v1/`<br>
 
 **Dates:** `/api/v1/dates/`<br>
 
 _Query parameters:_<br>
-`type` - _valid values:_ `type = past, present, future`
+```
+type - [past, present, future]
+format - [shortDate, mediumDate, longDate, fullDate, shortTime, mediumTime, longTime, isoDate, isoTime, isoDateTime, isoUtcDateTime]
+```
+_Notes:_<br>
+format - can be set with a custom date format string with the help of [dateformat](https://www.npmjs.com/package/dateformat).

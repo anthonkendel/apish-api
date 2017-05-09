@@ -1,5 +1,6 @@
 import * as express from 'express';
 import {DateRouter} from './date.route';
+import {Request, Response, NextFunction} from 'express';
 
 export class MainRouter {
   /**

@@ -16,7 +16,8 @@ var DateRouter = (function () {
     DateRouter.prototype.routes = function () {
         this.router.get('/', function (req, res, next) {
             var type = req.query.type;
-            res.status(200).send(new date_model_1.Date(type).toJson());
+            var format = req.query.format;
+            res.status(200).send(new date_model_1.Date(type).toJson(format));
         });
     };
     /**
