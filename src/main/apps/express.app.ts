@@ -1,5 +1,5 @@
 import * as express from 'express';
-import {Request, Response} from 'express';
+import {NextFunction, Request, Response} from 'express';
 import {Message} from '../models/message.model';
 import {MainRouter} from '../routes/main.route';
 
@@ -22,13 +22,6 @@ export class ExpressApp {
   private serveRoutesNotAvailable() {
     // Return a message on resources not found
     this.expressApp.use(this.BASE_PATH, (req: Request, res: Response) => {
-      res.setHeader('Content-Type', 'application/json');
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-      res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-      res.setHeader('charset', 'utf-8');
-      req.accepts('application/json');
-
       res.send(new Message('Could not find the requested resource').toJson());
     });
 
@@ -42,6 +35,19 @@ export class ExpressApp {
     this.expressApp.use('/', express.static('public'));
   }
 
+  private setHeaders() {
+    this.expressApp.use('*', (req: Request, res: Response, next: NextFunction) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+      res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.setHeader('charset', 'utf-8');
+      req.accepts('application/json');
+
+      next();
+    });
+  }
+
   /**
    * Public
    */
@@ -50,6 +56,7 @@ export class ExpressApp {
     this.expressApp.set('port', (process.env.PORT || 3000));
 
     this.serveStaticSite();
+    this.setHeaders();
     this.serveRoutes();
     this.serveRoutesNotAvailable();
   }
