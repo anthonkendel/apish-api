@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var faker = require("faker");
 var dateFormat = require("dateformat");
+var VALID_TYPES = ['past', 'future', 'recent'];
+var VALID_FORMATS = ['shortDate', 'mediumDate', 'longDate', 'fullDate', 'shortTime', 'mediumTime', 'longTime', 'isoDate', 'isoTime', 'isoDateTime', 'isoUtcDateTime'];
+var DEFAULT_FORMAT = 'isoUtcDateTime';
 var Date = (function () {
     /**
      * Public
@@ -32,9 +35,12 @@ var Date = (function () {
         }
         return date;
     };
+    Date.prototype.validateFormat = function (format) {
+        return VALID_FORMATS.indexOf(format) >= 0;
+    };
     Date.prototype.formatDate = function (format) {
         if (format === void 0) { format = ''; }
-        return format ? dateFormat(this.date, format) : dateFormat(this.date, 'isoUtcDateTime');
+        return this.validateFormat(format) ? dateFormat(this.date, format) : dateFormat(this.date, DEFAULT_FORMAT);
     };
     Date.prototype.toJson = function (format) {
         if (format === void 0) { format = ''; }

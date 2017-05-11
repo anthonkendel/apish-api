@@ -1,6 +1,10 @@
 import * as faker from 'faker';
 import * as dateFormat from 'dateformat';
 
+const VALID_TYPES: string[] = ['past', 'future', 'recent'];
+const VALID_FORMATS: string[] = ['shortDate', 'mediumDate', 'longDate', 'fullDate', 'shortTime', 'mediumTime', 'longTime', 'isoDate', 'isoTime', 'isoDateTime', 'isoUtcDateTime'];
+const DEFAULT_FORMAT = 'isoUtcDateTime';
+
 export class Date {
   /**
    * Variables
@@ -31,8 +35,12 @@ export class Date {
     return date;
   }
 
+  private validateFormat(format: string): boolean {
+    return VALID_FORMATS.indexOf(format) >= 0;
+  }
+
   private formatDate(format = ''): any {
-    return format ? dateFormat(this.date, format) : dateFormat(this.date, 'isoUtcDateTime');
+    return this.validateFormat(format) ? dateFormat(this.date, format) : dateFormat(this.date, DEFAULT_FORMAT);
   }
 
   /**
@@ -44,6 +52,7 @@ export class Date {
 
   public toJson(format = '') {
     let formattedDate = this.formatDate(format);
+
     return JSON.stringify({
       date: formattedDate
     });
