@@ -14,12 +14,27 @@ Apish API uses the following libraries for generating data and formatting:
 
 ### Endpoints
 
-**Dates:** `/api/v1/dates/`<br>
+**Dates:**  
+`GET /api/v1/dates/`  
 
-_Query parameters:_<br>
+_Query parameters:_  
 ```
 type - [past, present, future]
 format - [shortDate, mediumDate, longDate, fullDate, shortTime, mediumTime, longTime, isoDate, isoTime, isoDateTime, isoUtcDateTime]
 ```
-_Notes:_<br>
+_Notes:_  
 format - can be set with a custom date format string with the help of [dateformat](https://www.npmjs.com/package/dateformat).
+
+`POST /api/v1/dates/`
+
+_Body parameters:_  
+```
+year: number
+month: number
+day: number
+```
+
+_Query parameters:_  
+```
+format - [shortDate, mediumDate, longDate, fullDate, shortTime, mediumTime, longTime, isoDate, isoTime, isoDateTime, isoUtcDateTime]
+```

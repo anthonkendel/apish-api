@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>OpenData</title>
+  <meta charset="UTF-8">
+  <title>Apish API</title>
+  <link rel="stylesheet" type="text/css" href="github.css">
 </head>
+
 <body>
-    <p> Hello World </p>
+  <p><img src="ape.png" alt="apish_api"></p>
+  <h1 id="apish-api">Apish API</h1>
+  <p><a href="https://travis-ci.org/anthonkendel/apish_api"><img
+        src="https://travis-ci.org/anthonkendel/apish_api.svg?branch=master" alt="Build Status"></a> <a href="https://github.com/anthonkendel/opendata-api/blob/master/package.json"><img
+        src="https://david-dm.org/anthonkendel/opendata-api.svg" alt="Dependencies Status"></a> <a href="https://en.wikipedia.org/wiki/MIT_License"><img src="https://img.shields.io/badge/license-MIT-blue.svg"
+                                                              alt="License"></a> <a href="https://odata-api.herokuapp.com/api/v1"><img
+        src="https://img.shields.io/badge/available-heroku-7565C7.svg" alt="Heroku"></a></p>
+  <h2 id="apish-api-provides-an-open-and-free-api-to-use-with-any-application-">Apish API provides an open and free API to
+    use with any application.</h2>
+  <hr>
+  <p>Apish API uses the following libraries for generating data and formatting:</p>
+  <ul>
+    <li><a href="https://github.com/marak/Faker.js/">Faker.js</a></li>
+    <li><a href="https://www.npmjs.com/package/dateformat">dateformat</a></li>
+  </ul>
+  <h3 id="endpoints">Endpoints</h3>
+  <p><strong>Dates:</strong><br><code>GET /api/v1/dates/</code></p>
+  <p><em>Query parameters:</em></p>
+  <pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span
+        class="syntax--meta syntax--paragraph syntax--text"><span>type&nbsp;-&nbsp;[past,&nbsp;present,&nbsp;future]</span></span></span></div><div
+        class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>format&nbsp;-&nbsp;[shortDate,&nbsp;mediumDate,&nbsp;longDate,&nbsp;fullDate,&nbsp;shortTime,&nbsp;mediumTime,&nbsp;longTime,&nbsp;isoDate,&nbsp;isoTime,&nbsp;isoDateTime,&nbsp;isoUtcDateTime]</span></span></span></div></pre>
+  <p><em>Notes:</em><br>format - can be set with a custom date format string with the help of <a href="https://www.npmjs.com/package/dateformat">dateformat</a>.</p>
+  <p><code>POST /api/v1/dates/</code></p>
+  <p><em>Body parameters:</em></p>
+  <pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span
+        class="syntax--meta syntax--paragraph syntax--text"><span>year:&nbsp;number</span></span></span></div><div
+        class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>month:&nbsp;number</span></span></span></div><div
+        class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>day:&nbsp;number</span></span></span></div></pre>
+  <p><em>Query parameters:</em></p>
+  <pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span
+        class="syntax--meta syntax--paragraph syntax--text"><span>format&nbsp;-&nbsp;[shortDate,&nbsp;mediumDate,&nbsp;longDate,&nbsp;fullDate,&nbsp;shortTime,&nbsp;mediumTime,&nbsp;longTime,&nbsp;isoDate,&nbsp;isoTime,&nbsp;isoDateTime,&nbsp;isoUtcDateTime]</span></span></span></div></pre>
 </body>
+
 </html>
