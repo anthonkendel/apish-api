@@ -28,8 +28,10 @@ export class DateRouter {
       res.status(200).send(response);
     });
 
-    this.router.post('', (req: Request, res: Response, next: NextFunction) => {
+    this.router.post('/', (req: Request, res: Response, next: NextFunction) => {
+      let response = DateController.getInstance().createDate(req.body.year, req.body.month, req.body.day, req.query.format);
 
+      res.status(200).send(response);
     });
   }
 

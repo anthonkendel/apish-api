@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 import {NextFunction, Request, Response} from 'express';
 import {Message} from '../models/message.model';
 import {MainRouter} from '../routes/main.route';
@@ -55,6 +56,8 @@ export class ExpressApp {
   public constructor() {
     this.expressApp = express();
     this.expressApp.set('port', (process.env.PORT || this.DEFAULT_PORT));
+    this.expressApp.use(bodyParser.json());
+    this.expressApp.use(bodyParser.urlencoded({extended: false}));
 
     this.staticSite();
     this.setHeaders();
