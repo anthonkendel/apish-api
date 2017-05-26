@@ -6,7 +6,7 @@
 
 --------------------------------------------------------------------------------
 
-OpenData-API uses the following libraries for generating data and formatting:
+Apish API uses the following libraries for generating data and formatting:
 
 - [Faker.js](https://github.com/marak/Faker.js/)
 - [dateformat](https://www.npmjs.com/package/dateformat)
