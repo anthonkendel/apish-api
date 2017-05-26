@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/main/apps/main.app.js",
     "test": "mocha -c src/test/**/*.js",
-    "tslint": "tslint"
+    "tslint": "tslint",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
