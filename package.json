@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/main/apps/main.app.js",
-    "test": "mocha -c src/test/**/*.js",
+    "test": "npm run tslinttest && npm run mochatest",
+    "mochatest": "mocha -c src/test/**/*.js",
+    "tslinttest": "tslint src/**/*.ts",
     "tslint": "tslint",
     "tsc": "tsc"
   },

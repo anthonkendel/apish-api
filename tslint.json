@@ -1,17 +1,36 @@
 {
   "jsRules": {
     "class-name": true,
-    "comment-format": [true, "check-space"],
-    "indent": [true, "spaces"],
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
     "no-duplicate-variable": true,
     "no-eval": true,
     "no-trailing-whitespace": true,
     "no-unsafe-finally": true,
-    "one-line": [true, "check-open-brace", "check-whitespace"],
-    "quotemark": [true, "double"],
-    "semicolon": [true, "always"],
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-whitespace"
+    ],
+    "quotemark": [
+      true,
+      "double"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
     "triple-equals": true,
-    "variable-name": [true, "ban-keywords"],
+    "variable-name": [
+      true,
+      "ban-keywords"
+    ],
     "whitespace": [
       true,
       "check-branch",
@@ -24,22 +43,46 @@
   "rules": {
     "class-name": true,
     "curly": true,
-    "only-arrow-functions": [true, "allow-declarations"],
+    "only-arrow-functions": [
+      true,
+      "allow-declarations"
+    ],
     "arrow-parens": true,
-    "comment-format": [true, "check-space"],
-    "indent": [true, "spaces"],
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
     "no-var-keyword": true,
-    "no-use-before-declare": true,
     "no-eval": true,
     "no-internal-module": true,
     "no-trailing-whitespace": true,
     "no-unsafe-finally": true,
-    "one-line": [true, "check-open-brace", "check-whitespace"],
-    "no-consecutive-blank-lines": [true, 1],
-    "quotemark": [true, "single"],
-    "semicolon": [true, "always"],
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-whitespace"
+    ],
+    "no-consecutive-blank-lines": [
+      true,
+      1
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
     "triple-equals": true,
-    "variable-name": [true, "ban-keywords"],
+    "variable-name": [
+      true,
+      "ban-keywords"
+    ],
     "import-spacing": true,
     "ordered-imports": false,
     "typedef-whitespace": [
