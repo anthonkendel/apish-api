@@ -9,17 +9,18 @@ export class ExpressApp {
    */
   public expressApp: express.Application;
 
-  private readonly BASE_PATH = '/api';
-  private readonly VERSION_PATH = '/v1';
+  private readonly BASE_PATH: string = '/api';
+  private readonly VERSION_PATH: string = '/v1';
+  private readonly DEFAULT_PORT: number = 3000;
 
   /**
    * Private
    */
-  private serveRoutes() {
+  private routesAvailable(): void {
     this.expressApp.use(this.BASE_PATH + this.VERSION_PATH, MainRouter.getInstance().router);
   }
 
-  private serveRoutesNotAvailable() {
+  private routesNotAvailable(): void {
     // Return a message on resources not found
     this.expressApp.use(this.BASE_PATH, (req: Request, res: Response) => {
       res.send(new Message('Could not find the requested resource').toJson());
@@ -31,11 +32,11 @@ export class ExpressApp {
     });
   }
 
-  private serveStaticSite() {
+  private staticSite(): void {
     this.expressApp.use('/', express.static('public'));
   }
 
-  private setHeaders() {
+  private setHeaders(): void {
     this.expressApp.use('*', (req: Request, res: Response, next: NextFunction) => {
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -53,15 +54,15 @@ export class ExpressApp {
    */
   public constructor() {
     this.expressApp = express();
-    this.expressApp.set('port', (process.env.PORT || 3000));
+    this.expressApp.set('port', (process.env.PORT || this.DEFAULT_PORT));
 
-    this.serveStaticSite();
+    this.staticSite();
     this.setHeaders();
-    this.serveRoutes();
-    this.serveRoutesNotAvailable();
+    this.routesAvailable();
+    this.routesNotAvailable();
   }
 
-  public start() {
+  public start(): void {
     this.expressApp.listen(this.expressApp.get('port'), () => {
       console.log('App listening on port:' + this.expressApp.get('port'));
     });

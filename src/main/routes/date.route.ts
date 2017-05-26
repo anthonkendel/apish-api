@@ -18,10 +18,10 @@ export class DateRouter {
     }
     this.router = express.Router();
     this.setHeaders();
-    this.serveRoutes();
+    this.routesAvailable();
   }
 
-  private serveRoutes() {
+  private routesAvailable(): void {
     this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
       let type = req.query.type;
       let format = req.query.format;
@@ -30,7 +30,7 @@ export class DateRouter {
     });
   }
 
-  private setHeaders() {
+  private setHeaders(): void {
     this.router.use('*', (req: Request, res: Response, next: NextFunction) => {
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -46,7 +46,7 @@ export class DateRouter {
   /**
    * Public
    */
-  public static getInstance() {
+  public static getInstance(): DateRouter {
     return DateRouter._instance;
   }
 }

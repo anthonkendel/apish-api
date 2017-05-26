@@ -2,16 +2,16 @@ export class Message {
   /**
    * Variables
    */
-  private message: String;
+  private message: string;
 
   /**
    * Public
    */
-  public constructor(message: String) {
+  public constructor(message: string) {
     this.message = message;
   }
 
-  public toJson(): String {
+  public toJson(): string {
     return JSON.stringify({
       message: this.message
     });

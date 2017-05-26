@@ -18,14 +18,14 @@ export class MainRouter {
     }
     this.router = express.Router();
     this.setHeaders();
-    this.serveRoutes();
+    this.routesAvailable();
   }
 
-  private serveRoutes() {
+  private routesAvailable(): void {
     this.router.use('/dates', DateRouter.getInstance().router);
   }
 
-  private setHeaders() {
+  private setHeaders(): void {
     this.router.use('*', (req: Request, res: Response, next: NextFunction) => {
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -41,7 +41,7 @@ export class MainRouter {
   /**
    * Public
    */
-  public static getInstance() {
+  public static getInstance(): MainRouter {
     return MainRouter._instance;
   }
 }

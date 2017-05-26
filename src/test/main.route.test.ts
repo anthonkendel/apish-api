@@ -1,11 +1,11 @@
 import app from '../main/apps/main.app';
 import * as chai from 'chai';
 
-let chaiHttp = require('chai-http');
+let chaiHttp: any = require('chai-http');
 chai.use(chaiHttp);
 
-let api = app.expressApp;
-let should = chai.should();
+let api: any = app.expressApp;
+let should: any = chai.should();
 
 describe('requests on basepath - /api/v1', () => {
 

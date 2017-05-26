@@ -14,7 +14,7 @@ export class Date {
   /**
    * Private
    */
-  private generateDate(type = ''): any {
+  private generateDate(type = ''): string {
     let date: any = '';
 
     switch (type) {
@@ -39,7 +39,7 @@ export class Date {
     return VALID_FORMATS.indexOf(format) >= 0;
   }
 
-  private formatDate(format = ''): any {
+  private formatDate(format = ''): string {
     return this.validateFormat(format) ? dateFormat(this.date, format) : dateFormat(this.date, DEFAULT_FORMAT);
   }
 
@@ -50,7 +50,7 @@ export class Date {
     this.date = this.generateDate(type);
   }
 
-  public toJson(format = '') {
+  public toJson(format = ''): string {
     let formattedDate = this.formatDate(format);
 
     return JSON.stringify({
