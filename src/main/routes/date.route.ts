@@ -1,6 +1,7 @@
 import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
 import {DateController} from '../controllers/date.controller';
+import {Message} from '../models/message.model';
 
 export class DateRouter {
   /**
@@ -23,15 +24,21 @@ export class DateRouter {
 
   private routesAvailable(): void {
     this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
-      let response = DateController.getInstance().getDate(req.query.type, req.query.format);
-
-      res.status(200).send(response);
+      try {
+        let response = DateController.getInstance().getDate(req.query.type, req.query.format);
+        res.status(200).send(response);
+      } catch (err) {
+        res.status(400).send(new Message(err.toString()).toJson());
+      }
     });
 
     this.router.post('/', (req: Request, res: Response, next: NextFunction) => {
-      let response = DateController.getInstance().createDate(req.body.year, req.body.month, req.body.day, req.query.format);
-
-      res.status(200).send(response);
+      try {
+        let response = DateController.getInstance().createDate(req.body.year, req.body.month, req.body.day, req.query.format);
+        res.status(200).send(response);
+      } catch (err) {
+        res.status(400).send(new Message(err.toString()).toJson());
+      }
     });
   }
 

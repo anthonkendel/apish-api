@@ -49,4 +49,10 @@ export class DateModel {
   set date(value: any) {
     this._date = value;
   }
+
+  public toJson(): string {
+    return JSON.stringify({
+      date: this._date
+    });
+  }
 }
