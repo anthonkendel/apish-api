@@ -28,9 +28,7 @@
     "express": "4.15.2",
     "faker": "4.1.0",
     "uuid": "3.0.1",
-    "typescript": "2.2.2"
-  },
-  "devDependencies": {
+    "typescript": "2.2.2",
     "@types/chai": "3.5.1",
     "@types/chai-http": "0.0.30",
     "@types/dateformat": "1.0.1",
@@ -41,6 +39,9 @@
     "chai-http": "3.0.0",
     "mocha": "3.2.0",
     "tslint": "5.1.0"
+  },
+  "devDependencies": {
+
   },
   "engines": {
     "node": ">=6",
