@@ -1,1 +1,1 @@
-web: node src/main/apps/main.app.js
+web: npm run tsc && node src/main/apps/main.app.js
