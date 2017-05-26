@@ -4,8 +4,9 @@
   "description": "Free to use api for testing applications.",
   "main": "app.js",
   "scripts": {
-    "start": "npm run tsc && node src/main/apps/main.app.js",
+    "start": "node src/main/apps/main.app.js",
     "test": "npm run tslinttest && npm run mochatest",
+    "postinstall": "npm run tsc",
     "mochatest": "mocha -c src/test/**/*.js",
     "tslinttest": "tslint src/**/*.ts",
     "tslint": "tslint",
