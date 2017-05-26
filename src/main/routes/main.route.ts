@@ -14,7 +14,7 @@ export class MainRouter {
    */
   private constructor() {
     if (MainRouter._instance) {
-      throw new Error('The Logger is a singleton class and cannot be created!');
+      throw new Error('The MainRouter is a singleton class and cannot be created!');
     }
     this.router = express.Router();
     this.setHeaders();

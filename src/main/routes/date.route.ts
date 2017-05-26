@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {NextFunction, Request, Response} from 'express';
-import {Date} from '../models/date.model';
+import {DateController} from '../controllers/date.controller';
 
 export class DateRouter {
   /**
@@ -14,7 +14,7 @@ export class DateRouter {
    */
   private constructor() {
     if (DateRouter._instance) {
-      throw new Error('The Logger is a singleton class and cannot be created!');
+      throw new Error('The DateRouter is a singleton class and cannot be created!');
     }
     this.router = express.Router();
     this.setHeaders();
@@ -23,10 +23,13 @@ export class DateRouter {
 
   private routesAvailable(): void {
     this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
-      let type = req.query.type;
-      let format = req.query.format;
+      let response = DateController.getInstance().getDate(req.query.type, req.query.format);
 
-      res.status(200).send(new Date(type).toJson(format));
+      res.status(200).send(response);
+    });
+
+    this.router.post('', (req: Request, res: Response, next: NextFunction) => {
+
     });
   }
 

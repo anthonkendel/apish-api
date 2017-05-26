@@ -1,60 +1,52 @@
 import * as faker from 'faker';
-import * as dateFormat from 'dateformat';
 
 const VALID_TYPES: string[] = ['past', 'future', 'recent'];
-const VALID_FORMATS: string[] = ['shortDate', 'mediumDate', 'longDate', 'fullDate', 'shortTime', 'mediumTime', 'longTime', 'isoDate', 'isoTime', 'isoDateTime', 'isoUtcDateTime'];
-const DEFAULT_FORMAT = 'isoUtcDateTime';
 
-export class Date {
+export class DateModel {
   /**
    * Variables
    */
-  private date: any;
+  private _date: string;
 
-  /**
-   * Private
-   */
-  private generateDate(type = ''): string {
+  private isTypeValid(type: string) {
+    return VALID_TYPES.indexOf(type) >= 0;
+  }
+
+  private createDate(type = ''): string {
+    let currentYear: number = new Date().getFullYear();
     let date: any = '';
 
-    switch (type) {
-      case 'past':
-        date = faker.date.past();
-        break;
-      case 'future':
-        date = faker.date.future();
-        break;
-      case 'recent':
-        date = faker.date.recent();
-        break;
-      default:
-        date = faker.date.recent(1);
-        break;
+    if (this.isTypeValid(type)) {
+      switch (type) {
+        case 'past':
+          date = faker.date.past(currentYear);
+          break;
+        case 'future':
+          date = faker.date.future(currentYear);
+          break;
+        case 'recent':
+          date = faker.date.recent(10);
+          break;
+      }
+    } else {
+      date = faker.date.recent(1);
     }
 
     return date;
-  }
-
-  private validateFormat(format: string): boolean {
-    return VALID_FORMATS.indexOf(format) >= 0;
-  }
-
-  private formatDate(format = ''): string {
-    return this.validateFormat(format) ? dateFormat(this.date, format) : dateFormat(this.date, DEFAULT_FORMAT);
   }
 
   /**
    * Public
    */
   public constructor(type = '') {
-    this.date = this.generateDate(type);
+    this._date = this.createDate(type);
   }
 
-  public toJson(format = ''): string {
-    let formattedDate = this.formatDate(format);
+  get date(): any {
+    return this._date;
+  }
 
-    return JSON.stringify({
-      date: formattedDate
-    });
+  set date(value: any) {
+    this._date = value;
   }
 }
