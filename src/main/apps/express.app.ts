@@ -4,31 +4,32 @@ import {NextFunction, Request, Response} from 'express';
 import {Message} from '../models/message.model';
 import {MainRouter} from '../routes/main.route';
 
+
+const BASE_PATH: string = '/api';
+const VERSION_PATH: string = '/v1';
+const DEFAULT_PORT: number = 3000;
+
 export class ExpressApp {
   /**
    * Variables
    */
   public expressApp: express.Application;
 
-  private readonly BASE_PATH: string = '/api';
-  private readonly VERSION_PATH: string = '/v1';
-  private readonly DEFAULT_PORT: number = 3000;
-
   /**
    * Private
    */
   private routesAvailable(): void {
-    this.expressApp.use(this.BASE_PATH + this.VERSION_PATH, MainRouter.getInstance().router);
+    this.expressApp.use(BASE_PATH + VERSION_PATH, MainRouter.getInstance().router);
   }
 
   private routesNotAvailable(): void {
     // Return a message on resources not found
-    this.expressApp.use(this.BASE_PATH, (req: Request, res: Response) => {
+    this.expressApp.use(BASE_PATH, (req: Request, res: Response) => {
       res.send(new Message('Could not find the requested resource').toJson());
     });
 
     // Return a message on resources not found
-    this.expressApp.use(this.BASE_PATH + this.VERSION_PATH, (req: Request, res: Response) => {
+    this.expressApp.use(BASE_PATH + VERSION_PATH, (req: Request, res: Response) => {
       res.send(new Message('Could not find the requested resource').toJson());
     });
   }
@@ -55,7 +56,7 @@ export class ExpressApp {
    */
   public constructor() {
     this.expressApp = express();
-    this.expressApp.set('port', (process.env.PORT || this.DEFAULT_PORT));
+    this.expressApp.set('port', (process.env.PORT || DEFAULT_PORT));
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({extended: false}));
 
