@@ -1,5 +1,5 @@
 {
-  "name": "opendata-api",
+  "name": "apish_api",
   "version": "1.0.0",
   "description": "Free to use api for testing applications.",
   "main": "app.js",
