@@ -24,12 +24,12 @@ export class ExpressApp {
   private routesNotAvailable(): void {
     // Return a message on resources not found
     this.expressApp.use(BASE_PATH, (req: Request, res: Response) => {
-      res.status(400).send(new Message('Could not find the requested resource').toJson());
+      res.send(new Message('Could not find the requested resource').toJson());
     });
 
     // Return a message on resources not found
     this.expressApp.use(BASE_PATH + VERSION_PATH, (req: Request, res: Response) => {
-      res.status(400).send(new Message('Could not find the requested resource').toJson());
+      res.send(new Message('Could not find the requested resource').toJson());
     });
   }
 

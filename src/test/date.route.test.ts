@@ -15,6 +15,7 @@ describe('requests on date router - /api/v1/dates', () => {
     return chai.request(api)
       .get('/api/v1/dates')
       .then((res) => {
+        res.body.should.have.property('uuid');
         res.body.should.have.property('date');
       });
   });
@@ -23,34 +24,62 @@ describe('requests on date router - /api/v1/dates', () => {
     return chai.request(api)
       .get('/api/v1/dates/')
       .then((res) => {
+        res.should.have.status(200);
+      });
+  });
+
+  /**
+   * POST
+   */
+  let body = {
+    'year': 2000,
+    'month': 10,
+    'day': 1
+  };
+
+  it('should return proper format on POST - /', () => {
+    return chai.request(api)
+      .post('/api/v1/dates/')
+      .send(body)
+      .then((res) => {
+        res.body.should.have.property('uuid');
         res.body.should.have.property('date');
       });
   });
 
-  describe('request on date router - /api/v1/dates?type=', () => {
+  it('should return status code ::200:: on POST - /', () => {
+    return chai.request(api)
+      .post('/api/v1/dates/')
+      .send(body)
+      .then((res) => {
+        res.should.have.status(200);
+      });
+  });
 
-    it('should return proper format on GET - ?type=past', () => {
-      return chai.request(api)
-        .get('/api/v1/dates?type=past')
-        .then((res) => {
-          res.body.should.have.property('date');
-        });
-    });
+  let faultyBody = {
+    'year': '20--',
+    'month': 10,
+    'day': 1
+  };
 
-    it('should return proper format on GET - ?type=future', () => {
-      return chai.request(api)
-        .get('/api/v1/dates?type=future')
-        .then((res) => {
-          res.body.should.have.property('date');
-        });
-    });
+  it('should return proper format on faulty POST - /', () => {
+    return chai.request(api)
+      .post('/api/v1/dates/')
+      .send(faultyBody)
+      .then((res) => {
+      }, (res) => {
+        res.should.have.property('message');
+      });
+  });
 
-    it('should return proper format on GET - ?type=recent', () => {
-      return chai.request(api)
-        .get('/api/v1/dates?type=recent')
-        .then((res) => {
-          res.body.should.have.property('date');
-        });
-    });
+  it('should return status code ::400:: on faulty POST - /', () => {
+    return chai.request(api)
+      .post('/api/v1/dates/')
+      .send(body)
+      .send(faultyBody)
+      .then((res) => {
+      }, (res) => {
+        res.should.have.status(400);
+      });
   });
 });
